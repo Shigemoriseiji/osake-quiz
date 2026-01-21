@@ -6,4 +6,3 @@ docker compose exec mysql mysql -uroot -prootpass -e "DROP DATABASE IF EXISTS os
 docker compose exec mysql bash  
 mysql --default-character-set=utf8mb4 -uroot -prootpass < /root/sql/initialize.sql  
   
-URL：http://localhost:8080/  
