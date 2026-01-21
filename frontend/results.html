@@ -1,0 +1,54 @@
+@'
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>結果一覧 | お酒クイズ</title>
+  <link rel="stylesheet" href="./app.css"/>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <h2>結果一覧</h2>
+
+      <ul id="results" class="list"></ul>
+
+      <div class="row" style="margin-top:20px;">
+        <button class="btn" onclick="goHome()">ホームに戻る</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    async function loadResults(){
+      const res = await fetch("/api/results");
+      const data = await res.json();
+
+      const ul = document.getElementById("results");
+      ul.innerHTML = "";
+
+      if (!data.results || data.results.length === 0) {
+        const li = document.createElement("li");
+        li.textContent = "まだ結果はありません。";
+        ul.appendChild(li);
+        return;
+      }
+
+      data.results.forEach(r => {
+        const li = document.createElement("li");
+        const date = new Date(r.created_at).toLocaleString("ja-JP");
+        li.textContent = `${date}｜スコア ${r.correct} / ${r.total}`;
+        ul.appendChild(li);
+      });
+    }
+
+    function goHome(){
+      location.href = "./index.html";
+    }
+
+    loadResults();
+  </script>
+</body>
+</html>
+

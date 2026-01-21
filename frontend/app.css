@@ -1,0 +1,188 @@
+/* ===== ベース ===== */
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+  background: linear-gradient(180deg, #f7f3ee, #efe7dc);
+  color: #3b2f2f;
+}
+
+/* ===== レイアウト ===== */
+.container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+}
+
+.card {
+  width: 100%;
+  max-width: 720px; /* 横に余裕 */
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+
+/* ===== 見出し ===== */
+h1, h2 {
+  margin-top: 0;
+  text-align: center;
+  letter-spacing: 0.08em;
+}
+h1 { font-size: 28px; }
+h2 { font-size: 24px; }
+
+/* ===== テキスト ===== */
+.muted { color: #7a6a58; text-align: center; }
+.small { font-size: 13px; }
+
+.kana {
+  text-align: center;
+  font-weight: bold;
+  letter-spacing: 0.15em;
+  color: #8b5a2b; /* 琥珀色 */
+}
+
+/* ===== クイズ表示 ===== */
+#category {
+  text-align: center;
+  margin-bottom: 6px;
+  color: #6f4e37;
+}
+
+#prompt {
+  font-size: 20px;
+  text-align: center;
+  margin: 14px 0;
+  padding: 12px;
+  background: #fbf7f2;
+  border-radius: 10px;
+}
+
+/* ===== バッジ ===== */
+.badge {
+  display: inline-block;
+  margin: 0 auto 8px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-weight: bold;
+  background: #e0d4c2;
+  color: #3b2f2f;
+}
+.badge.ok { background: #9fc5a1; color: #1f3d2b; }
+.badge.ng { background: #e6a4a4; color: #5a1f1f; }
+
+/* ===== 進捗バー ===== */
+.progress {
+  width: 100%;
+  height: 8px;
+  background: #e5ded4;
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 10px 0 16px;
+}
+.progress > div {
+  height: 100%;
+  background: linear-gradient(90deg, #cfa45d, #8b5a2b);
+  width: 0%;
+  transition: width 0.3s ease;
+}
+
+/* =================================================
+   ボタン共通（色はそのまま）
+   ※ホーム/結果などのボタンは1行を基本にしてスッキリ
+================================================= */
+.row {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.btn {
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: none;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  background: linear-gradient(180deg, #d9b382, #b8925e);
+  color: #ffffff;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.12);
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+
+  /* 既定：1行表示（ホーム/結果のバランス維持） */
+  white-space: nowrap;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.14);
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: default;
+  box-shadow: none;
+}
+
+.btn.correct { background: linear-gradient(180deg, #7fcf85, #4fa255); }
+.btn.wrong   { background: linear-gradient(180deg, #e07b7b, #b44a4a); }
+
+/* =================================================
+   ★ クイズ選択肢（A〜D）だけ全文表示にする
+   - 改行OK
+   - 高さ揃え
+   - 文字が長くても切れない
+================================================= */
+#A, #B, #C, #D {
+  flex: 1 1 0;
+  min-width: 0;              /* flex内で潰れたときの挙動安定 */
+
+  white-space: normal;       /* ★ 改行OK（…にならない） */
+  overflow: visible;         /* ★ 隠さない */
+  text-overflow: clip;       /* ★ 省略しない */
+
+  line-height: 1.25;
+  padding: 10px 10px;
+  font-size: 13px;           /* 12文字以上でも収まりやすく */
+  text-align: center;        /* そのまま中央でOK。左寄せが良ければ変更可 */
+}
+
+/* 選択肢の行は高さを揃えて見栄えを安定 */
+.row:has(#A) {
+  align-items: stretch;
+}
+
+/* ===== フィードバック ===== */
+#feedback {
+  text-align: center;
+  margin-top: 12px;
+  color: #6f4e37;
+}
+
+/* ===== リスト ===== */
+.list { padding-left: 0; list-style: none; }
+
+.list li {
+  padding: 10px;
+  border-bottom: 1px solid #e0d6c9;
+  font-size: 14px;
+}
+
+/* ===== 演出 ===== */
+.ink-bloom { animation: bloom 0.25s ease; }
+
+@keyframes bloom {
+  from { background-color: #f5ede3; }
+  to   { background-color: #fbf7f2; }
+}
+
+/* ===== スマホ時：さらに少し詰める ===== */
+@media (max-width: 520px) {
+  .card { padding: 18px; }
+  #A, #B, #C, #D { font-size: 12px; padding: 10px 8px; }
+}

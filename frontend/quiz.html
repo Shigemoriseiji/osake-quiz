@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>出題 | お酒クイズ</title>
+  <link rel="stylesheet" href="./app.css"/>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="row" style="justify-content:space-between; align-items:center;">
+        <span id="badge" class="badge">読</span>
+        <span id="counter" class="muted">第 1 問 / 10 問</span>
+      </div>
+
+      <div class="progress" style="margin:12px 0 16px;">
+        <div id="bar"></div>
+      </div>
+
+      <div id="prompt" class="kana">よみ</div>
+      <div id="category" class="muted small"></div>
+
+      <div style="margin-top:16px;" class="row">
+        <button class="btn" id="A" onclick="answer('A')"></button>
+        <button class="btn" id="B" onclick="answer('B')"></button>
+        <button class="btn" id="C" onclick="answer('C')"></button>
+        <button class="btn" id="D" onclick="answer('D')"></button>
+      </div>
+
+      <div id="feedback" class="muted small" style="margin-top:12px;"></div>
+    </div>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>

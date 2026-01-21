@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>結果 | お酒クイズ</title>
+  <link rel="stylesheet" href="./app.css"/>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <h2>結果</h2>
+
+      <!-- 点数表示 -->
+      <p id="score" class="kana" style="font-size:32px;"></p>
+      <p id="msg" class="muted small"></p>
+
+      <!-- 自動保存の状態表示 -->
+      <p id="saved" class="muted small" style="margin-top:10px;"></p>
+
+      <!-- ボタン -->
+      <div class="row" style="margin-top:20px;">
+        <button class="btn" onclick="goHome()">ホームに戻る</button>
+        <button class="btn" onclick="goResults()">結果一覧へ</button>
+        <button class="btn" onclick="goDetail()">回答一覧を見る</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="./app.js"></script>
+  <script>
+    function goHome(){ location.href = "./index.html"; }
+    function goResults(){ location.href = "./results.html"; }
+    function goDetail(){ location.href = "./result.html"; }
+  </script>
+</body>
+</html>
